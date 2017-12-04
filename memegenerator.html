@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<script data-require="angular.js@1.0.x"	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js" data-semver="1.0.8"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="./angular/controller.js"></script>
+<!-- <script src="./angular/html2canvas.js"></script>  -->
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="./css/resizer.css">
+
+</head>
+<body>
+
+   <div class="container">  
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="https://www.facebook.com/bukvalno.mk/">Facebook Page</a></li>
+        </ul>
+      </nav>
+
+      <article>
+		<div id="articleWrapper" ng-app="myApp" ng-controller="myCtrl">
+				<div id="allInputs">
+						<div id="maininput">
+						<div>
+							<span>Top:</span><input id="topInput" ng-model="topText" />
+						</div> 
+						<div>
+							<span>Bottom:</span><input id="bottomInput" ng-model="bottomText" />
+						</div> 
+						<div id="uploadImageDiv">
+							<div id="fileUploadDiv">Upload (attach) file:</div><input type='file' id="upload" />
+							<span id="orSpan">OR</span>
+							<input type='text' id="uploadUrl" /> <button id="readUploadUrl">Read URL</button>
+						</div>
+	
+					</div>
+					<div id="secondaryinput">						
+						<div><input type="checkbox" id="dashedCheckbox" checked="checked"/> <span>Show dashed border</span></div>
+						<div><input type="checkbox" id="upperCaseCheckbox" ng-model="upperOrLower" ng-click="syncDashed()"/> <span>Upper-case</span></div>
+						
+						<div id="secondaryTop">
+							<div>Top</div>
+							<div><input type="number" class="counter" ng-model="fontSizeTop" ng-click="syncDashed('top')"/> <span>Font size</span> </div>						
+							<div><input type="number" class="counter" ng-model="shadowSizeTop" min="-1" ng-click="syncDashed()"/> <span>Shadow size</span></div>
+							<div><input type="number" class="counter" ng-model="letterSpacingTop" ng-click="syncDashed()"/> <span>Letter spacing</span></div>
+						</div>
+						<div id="secondaryBottom">
+							<div>Bottom</div>
+							<div><input type="number" class="counter" ng-model="fontSizeBottom" ng-click="syncDashed('bottom')"/> <span>Font size</span> </div>
+							<div><input type="number" class="counter" ng-model="shadowSizeBottom" min="-1" ng-click="syncDashed()"/> <span>Shadow size</span></div>
+							<div><input type="number" class="counter" ng-model="letterSpacingBottom" ng-click="syncDashed()"/> <span>Letter spacing</span></div>
+						</div>
+						
+					</div>
+					<!-- 
+					<div id="addBox">
+						<button id="addBoxBtn">Add Box</button>
+						<div id="addedBoxes">						
+						</div>
+					</div>
+					 -->
+				<!-- 
+				<button id="save">Save</button>
+				-->
+				</div>
+				
+				<div id="wrapper">
+					<img id="img" src="./images/moj_je_zivot_svicarska.png" alt="bukvlano.mk" />
+		
+					<div id="resizableTop" class="ui-widget-content resizable" ng-class="{'upper_case': upperOrLower}" 
+						ng-style="{
+							'font-size': fontSizeTop + 'px',
+							'text-shadow': 'black -1px 0 ' + shadowSizeTop + 'px, black 0 1px ' + shadowSizeTop + 'px, black 1px 0 ' + shadowSizeTop + 'px, black 0 -1px ' + shadowSizeTop + 'px',
+							'letter-spacing': letterSpacingTop + 'px'
+							}">
+						<span id="innerTop" class="innerSpan">{{topText}}</span>
+					</div>
+					
+					<img id="vodaznak" src="./images/vodaznak.png" alt="bukvalno.mk" style="visibility: hidden"/>			
+					
+					<div id="resizableBottom" class="ui-widget-content resizable" ng-class="{'upper_case': upperOrLower}" 
+						ng-style="{
+							'font-size': fontSizeBottom + 'px',
+							'text-shadow': 'black -1px 0 ' + shadowSizeBottom + 'px, black 0 1px ' + shadowSizeBottom + 'px, black 1px 0 ' + shadowSizeBottom + 'px, black 0 -1px ' + shadowSizeBottom + 'px',
+							'letter-spacing': letterSpacingBottom + 'px'
+							}">
+						<span id="innerBottom" class="innerSpan">{{bottomText}}</span>
+					</div>
+				</div>		
+			</div>	
+      </article>
+      <footer>bukvalno.mk &copy; <span id="year"></span></footer>
+   </div>
+</body>
+</html>
